@@ -39,48 +39,47 @@ class App extends Component {
 		this.setState({name});
 		socket.emit('join', name);
 	}
-};
 
-render() {
-	return this.state.name !== '' ? (
-		this.renderLayout()
-	) : this.renderUserForm()
-}
+	render() {
+		return this.state.name !== '' ? (
+			this.renderLayout()
+		) : this.renderUserForm()
+	}
 
-renderLayout() {
-	return (
-		<div className = {styles.App}>
-			<div className = {styles.AppHeader}>
-				<div className = {styles.AppTitle}>
-					ChatApp
+	renderLayout() {
+		return (
+			<div className = {styles.App}>
+				<div className = {styles.AppHeader}>
+					<div className = {styles.AppTitle}>
+						ChatApp
+					</div>
+					<div className = {styles.AppRoom}>
+						App room
+					</div>
 				</div>
-				<div className = {styles.AppRoom}>
-					App room
+				<div className = {styles.AppBody}>
+					<UsersList
+						users = {this.state.users}
+					/>
+					<div className = {styles.MessageWrapper}>
+						<MessageList
+							messages = {this.state.messages}
+						/>
+						<MessageForm
+							on MessageSubmit = {message => this.handleMessageSubmit(message)}
+							name = {this.state.name}
+						/>
+					</div>
 				</div>
 			</div>
-			<div className = {styles.AppBody}>
-				<UsersList
-					users = {this.state.users}
-				/>
-				<div className = {styles.MessageWrapper}>
-					<MessageList
-						messages = {this.state.messages}
-					/>
-					<MessageForm
-						on MessageSubmit = {message => this.handleMessageSubmit(message)}
-						name = {this.state.name}
-					/>
-				</div>
-			</div>
-		</div>
-	);
-}
+		);
+	}
 
-renderUserForm() {
-	return (
-		<UserForm onUserSubmit = {name => this.handleUserSubmit(name)}/>
-}
-	)
+	renderUserForm() {
+		return (
+			<UserForm onUserSubmit = {name => this.handleUserSubmit(name)}/>
+		)
+	}
 }
 
 export default App;

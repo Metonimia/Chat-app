@@ -22,7 +22,7 @@ io.on('connection', function(socket) {
 			name
 		});
 		io.emit('update', {
-			users.userService.getAllUsers()
+			users:userService.getAllUsers()
 		});
 	});
 });
