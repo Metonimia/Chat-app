@@ -66,7 +66,7 @@ class App extends Component {
 							messages = {this.state.messages}
 						/>
 						<MessageForm
-							on MessageSubmit = {message => this.handleMessageSubmit(message)}
+							onMessageSubmit = {message => this.handleMessageSubmit(message)}
 							name = {this.state.name}
 						/>
 					</div>
